@@ -1,8 +1,11 @@
-export default function App() {
-  return (
-    <div className="bg-amber-400">
-      <p className="text-center">test</p>
-    </div>
-  )
-}
+import Nav from "./components/Nav";
 
+const App = () => {
+  return (
+    <div>
+      <Nav />
+    </div>
+  );
+};
+
+export default App;
