@@ -1,6 +1,6 @@
 import App from "./App";
-import Contacts from "./components/Contacts";
 import Shop from "./components/Shop";
+import Cart from "./components/Cart";
 
 const routes = [
   {
@@ -12,8 +12,8 @@ const routes = [
     element: <Shop />,
   },
   {
-    path: "contacts",
-    element: <Contacts />,
+    path: "cart",
+    element: <Cart />,
   },
 ];
 
