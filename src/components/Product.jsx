@@ -1,32 +1,10 @@
-import { useState } from "react";
-
-const Product = ({ data, cartItems, setCartItems }) => {
-  const [itemCount, setItemCount] = useState(0);
-  function setElement(itemCount) {
-    return itemCount === 0 ? (
-      "Add to cart"
-    ) : (
-      <div className="flex flex-row">
-        <p
-          className="flex-1 cursor-pointer"
-          onClick={() => {
-            setItemCount((itemCount) => itemCount - 1);
-          }}
-        >
-          -
-        </p>
-        <p className="flex-3">{itemCount}</p>
-        <p
-          className="flex-1 cursor-pointer"
-          onClick={() => {
-            setItemCount((itemCount) => itemCount + 1);
-          }}
-        >
-          +
-        </p>
-      </div>
-    );
-  }
+const Product = ({
+  data,
+  itemsCount,
+  setItemsCount,
+  itemsDisplay,
+  setItemsDisplay,
+}) => {
   return (
     <div className="flex flex-wrap flex-col gap-2 border-1 border-[#00000076] p-2 rounded-md shadow-lg">
       <div className="flex-1 flex flex-col justify-center items-center">
@@ -39,13 +17,53 @@ const Product = ({ data, cartItems, setCartItems }) => {
         <button
           className="flex-1 bg-[#0000005d] rounded-m d cursor-pointer text-xl p-1 rounded-md"
           onClick={() => {
-            setCartItems((cartItems) => cartItems + 1);
-            if (itemCount === 0) {
-              setItemCount((itemCount) => itemCount + 1);
+            if (!itemsDisplay[data["id"]] && itemsCount[data["id"]] === 0) {
+              let obj = itemsDisplay;
+              obj[data["id"]] = true;
+              setItemsDisplay(obj);
+              obj = itemsCount;
+              obj[data["id"]]++;
+              setItemsCount(obj);
+            } else if (
+              itemsCount[data["id"]] === 0 &&
+              itemsDisplay[data["id"]]
+            ) {
+              let obj = itemsDisplay;
+              obj[data["id"]] = false;
+              setItemsDisplay(obj);
             }
           }}
         >
-          {setElement(itemCount)}
+          <p className={`${itemsDisplay[data["id"]] ? "hidden" : "inline"}`}>
+            Add to cart
+          </p>
+          <div
+            className={`${
+              itemsDisplay[data["id"]] ? "flex" : "hidden"
+            } flex-row`}
+          >
+            <p
+              className="flex-1 cursor-pointer"
+              onClick={() => {
+                let obj = itemsCount;
+                obj[data["id"]]--;
+                setItemsCount(obj);
+              }}
+            >
+              -
+            </p>
+            <p className="flex-3">{itemsCount[data["id"]]}</p>
+            <p
+              className="flex-1 cursor-pointer"
+              onClick={() => {
+                let obj = itemsCount;
+                obj[data["id"]]++;
+                setItemsCount(obj);
+              }}
+            >
+              +
+            </p>
+          </div>
         </button>
       </div>
     </div>
