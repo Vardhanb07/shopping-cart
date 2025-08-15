@@ -1,5 +1,4 @@
 import { useOutletContext } from "react-router-dom";
-import CartProduct from "./CartProduct";
 
 const Cart = () => {
   const { itemsCount, data } = useOutletContext();
@@ -13,7 +12,6 @@ const Cart = () => {
     });
     return price;
   }
-
   return (
     <div className="flex flex-col p-2">
       <div className="flex flex-col gap-1">

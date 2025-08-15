@@ -15,7 +15,7 @@ const App = () => {
   }
   const [itemsDisplay, setItemsDisplay] = useState(obj);
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full font-lexend">
       <Nav />
       <Outlet
         context={{
