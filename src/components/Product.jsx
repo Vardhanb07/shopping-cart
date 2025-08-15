@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const Product = ({
   data,
   itemsCount,
@@ -68,6 +70,14 @@ const Product = ({
       </div>
     </div>
   );
+};
+
+Product.PropTypes = {
+  data: PropTypes.object,
+  itemsCount: PropTypes.object,
+  setItemsCount: PropTypes.func,
+  itemsDisplay: PropTypes.object,
+  setItemsDisplay: PropTypes.func,
 };
 
 export default Product;
